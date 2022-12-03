@@ -1,5 +1,5 @@
 import { Logger } from '../../lib/log'
-import { parseFile } from '../../lib/parser'
+import { groupLines, parseFile } from '../../lib/parser'
 
 class Resolver {
   day: string
@@ -37,14 +37,7 @@ class Resolver {
   solve2 () {
     const logger = new Logger(`Day${this.day}-2`)
     let total = 0
-    const groups = this.lines.reduce((acc, cur, i) => {
-      if (i % 3 === 0) {
-        acc = [...acc, []]
-      }
-      acc[acc.length - 1] = [...acc[acc.length - 1], cur]
-      return acc
-    }, [] as string[][])
-
+    const groups = groupLines(this.lines, 3)
     groups.forEach(group => {
       const [a, b, c] = group
       let point = 0

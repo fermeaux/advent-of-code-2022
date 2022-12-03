@@ -14,3 +14,13 @@ export function parseFile (day: string, fileName: string = 'data'): string {
 export function parseLine (line: string, regex: RegExp): Record<string, any> {
   return { ...({ ...regex.exec(line) }).groups }
 }
+
+export function groupLines (lines: string[], size: number): Array<Array<string>> {
+  return lines.reduce((acc, cur, i) => {
+    if (i % size === 0) {
+      acc.push([])
+    }
+    acc[acc.length - 1].push(cur)
+    return acc
+  }, [] as string[][])
+}
