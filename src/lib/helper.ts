@@ -54,3 +54,7 @@ export function isValidBoardDirection (board: any[][], point: { x: number, y: nu
 export function dec2bin (dec) {
   return (dec >>> 0).toString(2)
 }
+
+export function hasUniqueCharacters (str: string) {
+  return new Set(str.split('')).size === str.length
+}
